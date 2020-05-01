@@ -23,8 +23,4 @@ logs:
 	docker logs -f ${PROJECT}
 
 bash:
-	docker exec -it ${PROJECT} bash -c " \
-		groupmod --non-unique --gid $(shell id -u) www-data && \
-		usermod --non-unique --uid $(shell id -g) www-data && \
-		sudo -EH -u www-data bash \
-	"
+	docker exec -it -u www-data:www-data ${PROJECT} bash
