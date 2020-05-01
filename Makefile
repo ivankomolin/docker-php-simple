@@ -6,11 +6,11 @@ build:
 up:
 	docker run -d --name ${PROJECT} \
 		-p 8000:8000 \
-		-v ${PWD}/src/:/app/ \
+		-v ${PWD}/src/:/src/ \
 		${PROJECT} bash -c " \
 			groupmod --non-unique --gid $(shell id -u) www-data && \
 			usermod --non-unique --uid $(shell id -g) www-data && \
-			sudo -EH -u www-data php -S 0.0.0.0:8000 -t /app/ \
+			sudo -EH -u www-data php -S 0.0.0.0:8000 -t /src/ \
 		"
 
 down:
